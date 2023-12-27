@@ -6,20 +6,11 @@ const int pingPin3 = 9;  // Trigger Pin of Ultrasonic Sensor 3
 const int echoPin3 = 10; // Echo Pin of Ultrasonic Sensor 3
 
 
-
-
-const int ledPin1 = 4;  // LED for Sensor 1
-const int ledPin2 = 2;  // LED for Sensor 2
-const int ledPin3 = 14;  // LED for Sensor 3
 const int dThreshold1 = 50;
 const int dThreshold2 = 150;
 const int motorPin1 = 5;
 const int motorPin2 = 6;
 const int motorPin3 = 3;
-
-
-
-
 
 
 
@@ -140,12 +131,6 @@ void loop() {
 
 
 
-
-
-
-
-
-
   if (cm2 < dThreshold1) {
     analogWrite(motorPin2, 255); // Full intensity vibration
   } else if (cm2 >= dThreshold1 && cm2 < dThreshold2) {
@@ -153,10 +138,6 @@ void loop() {
   } else {
     digitalWrite(motorPin2, LOW); // Stop vibration
   }
-
-
-
-
 
 
 
@@ -172,7 +153,6 @@ void loop() {
 
 
 
-
   // Print sensor readings to Serial Monitor
   Serial.print("Sensor 1: ");
   Serial.print(inches1);
@@ -182,16 +162,12 @@ void loop() {
   Serial.println();
 
 
-
-
   Serial.print("Sensor 2: ");
   Serial.print(inches2);
   Serial.print(" inches, ");
   Serial.print(cm2);
   Serial.print(" cm ");
   Serial.println();
-
-
 
 
   Serial.print("Sensor 3: ");
@@ -203,12 +179,5 @@ void loop() {
   Serial.println();
 
 
-
-
   delay(50); // Adjust delay as needed
 }
-
-
-
-
-
