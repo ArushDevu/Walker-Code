@@ -1,0 +1,214 @@
+const int pingPin1 = 13; // Trigger Pin of Ultrasonic Sensor 1
+const int echoPin1 = 12; // Echo Pin of Ultrasonic Sensor 1
+const int pingPin2 = 8;  // Trigger Pin of Ultrasonic Sensor 2
+const int echoPin2 = 7;  // Echo Pin of Ultrasonic Sensor 2
+const int pingPin3 = 9;  // Trigger Pin of Ultrasonic Sensor 3
+const int echoPin3 = 10; // Echo Pin of Ultrasonic Sensor 3
+
+
+
+
+const int ledPin1 = 4;  // LED for Sensor 1
+const int ledPin2 = 2;  // LED for Sensor 2
+const int ledPin3 = 14;  // LED for Sensor 3
+const int dThreshold1 = 50;
+const int dThreshold2 = 150;
+const int motorPin1 = 5;
+const int motorPin2 = 6;
+const int motorPin3 = 3;
+
+
+
+
+
+
+
+
+void setup() {
+  Serial.begin(9600);
+
+
+
+
+  pinMode(motorPin1, OUTPUT);
+  pinMode(pingPin1, OUTPUT);
+  pinMode(echoPin1, INPUT);
+
+
+
+
+  pinMode(motorPin2, OUTPUT);
+  pinMode(pingPin2, OUTPUT);
+  pinMode(echoPin2, INPUT);
+
+
+
+
+  pinMode(motorPin3, OUTPUT);
+  pinMode(pingPin3, OUTPUT);
+  pinMode(echoPin3, INPUT);
+}
+
+
+
+
+
+
+long microsecondsToInches(long microseconds) {
+  return microseconds / 74 / 2;
+}
+
+
+
+
+long microsecondsToCentimeters(long microseconds) {
+  return microseconds / 29 / 2;
+}
+
+
+
+
+
+void loop() {
+  long duration1, inches1, cm1;
+  long duration2, inches2, cm2;
+  long duration3, inches3, cm3;
+
+
+
+
+  // Measure distance for Sensor 1
+  digitalWrite(pingPin1, LOW);
+  delayMicroseconds(2000);
+  digitalWrite(pingPin1, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(pingPin1, LOW);
+  delayMicroseconds(2);
+
+
+
+
+  duration1 = pulseIn(echoPin1, HIGH);
+  inches1 = microsecondsToInches(duration1);
+  cm1 = microsecondsToCentimeters(duration1);
+
+
+
+
+  // Measure distance for Sensor 2
+  digitalWrite(pingPin2, LOW);
+  delayMicroseconds(2000);
+  digitalWrite(pingPin2, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(pingPin2, LOW);
+  delayMicroseconds(2);
+
+
+
+
+  duration2 = pulseIn(echoPin2, HIGH);
+  inches2 = microsecondsToInches(duration2);
+  cm2 = microsecondsToCentimeters(duration2);
+
+
+
+
+  // Measure distance for Sensor 3
+  digitalWrite(pingPin3, LOW);
+  delayMicroseconds(2000);
+  digitalWrite(pingPin3, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(pingPin3, LOW);
+  delayMicroseconds(2);
+
+
+
+
+  duration3 = pulseIn(echoPin3, HIGH);
+  inches3 = microsecondsToInches(duration3);
+  cm3 = microsecondsToCentimeters(duration3);
+
+
+
+  if (cm1 < dThreshold1) {
+    analogWrite(motorPin1, 255); // Full intensity vibration
+  } else if (cm1 >= dThreshold1 && cm1 < dThreshold2) {
+    analogWrite(motorPin1, 170); // Medium intensity vibration
+  } else {
+    digitalWrite(motorPin1, LOW); // Stop vibration
+  }
+
+
+
+
+
+
+
+
+
+  if (cm2 < dThreshold1) {
+    analogWrite(motorPin2, 255); // Full intensity vibration
+  } else if (cm2 >= dThreshold1 && cm2 < dThreshold2) {
+    analogWrite(motorPin2, 170); // Medium intensity vibration
+  } else {
+    digitalWrite(motorPin2, LOW); // Stop vibration
+  }
+
+
+
+
+
+
+
+  if (cm3 < dThreshold1) {
+    analogWrite(motorPin3, 255); // Full intensity vibration
+  } else if (cm3 >= dThreshold1 && cm3 < dThreshold2) {
+    analogWrite(motorPin3, 170); // Medium intensity vibration
+  } else {
+    digitalWrite(motorPin3, LOW); // Stop vibration
+  }
+
+
+
+
+
+
+  // Print sensor readings to Serial Monitor
+  Serial.print("Sensor 1: ");
+  Serial.print(inches1);
+  Serial.print(" inches, ");
+  Serial.print(cm1);
+  Serial.print(" cm ");
+  Serial.println();
+
+
+
+
+  Serial.print("Sensor 2: ");
+  Serial.print(inches2);
+  Serial.print(" inches, ");
+  Serial.print(cm2);
+  Serial.print(" cm ");
+  Serial.println();
+
+
+
+
+  Serial.print("Sensor 3: ");
+  Serial.print(inches3);
+  Serial.print(" inches, ");
+  Serial.print(cm3);
+  Serial.print(" cm ");
+  Serial.println();
+  Serial.println();
+
+
+
+
+  delay(50); // Adjust delay as needed
+}
+
+
+
+
+
