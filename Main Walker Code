@@ -1,18 +1,16 @@
 const int pingPin1 = 13; // Trigger Pin of Ultrasonic Sensor 1
 const int echoPin1 = 12; // Echo Pin of Ultrasonic Sensor 1
-const int pingPin2 = 8;  // Trigger Pin of Ultrasonic Sensor 2
-const int echoPin2 = 7;  // Echo Pin of Ultrasonic Sensor 2
+const int pingPin2 = 11;  // Trigger Pin of Ultrasonic Sensor 2
+const int echoPin2 = 10;  // Echo Pin of Ultrasonic Sensor 2
 const int pingPin3 = 9;  // Trigger Pin of Ultrasonic Sensor 3
-const int echoPin3 = 10; // Echo Pin of Ultrasonic Sensor 3
+const int echoPin3 = 8; // Echo Pin of Ultrasonic Sensor 3
 
+const int motorPin1 = 7;
+const int motorPin2 = 6;
+const int motorPin3 = 5;
 
 const int dThreshold1 = 50;
 const int dThreshold2 = 150;
-const int motorPin1 = 5;
-const int motorPin2 = 6;
-const int motorPin3 = 3;
-
-
 
 
 void setup() {
@@ -179,5 +177,5 @@ void loop() {
   Serial.println();
 
 
-  delay(50); // Adjust delay as needed
+  delay(5000); // Adjust delay as needed
 }
