@@ -119,39 +119,24 @@ void loop() {
 
 
 
+
+  digitalWrite(pingPin2, LOW);
+  digitalWrite(pingPin3, LOW);
+  digitalWrite(motorPin2, LOW);
+  digitalWrite(motorPin3, LOW);
+  
+
+
+
+
   if (cm1 < dThreshold1) {
     analogWrite(motorPin1, 255); // Full intensity vibration
   } else if (cm1 >= dThreshold1 && cm1 < dThreshold2) {
-    analogWrite(motorPin1, 170); // Medium intensity vibration
+    analogWrite(motorPin1, 128); // Medium intensity vibration
   } else {
     digitalWrite(motorPin1, LOW); // Stop vibration
   }
 
-
-
-  if (cm2 < dThreshold1) {
-    analogWrite(motorPin2, 255); // Full intensity vibration
-  } else if (cm2 >= dThreshold1 && cm2 < dThreshold2) {
-    analogWrite(motorPin2, 170); // Medium intensity vibration
-  } else {
-    digitalWrite(motorPin2, LOW); // Stop vibration
-  }
-
-
-
-  if (cm3 < dThreshold1) {
-    analogWrite(motorPin3, 255); // Full intensity vibration
-  } else if (cm3 >= dThreshold1 && cm3 < dThreshold2) {
-    analogWrite(motorPin3, 170); // Medium intensity vibration
-  } else {
-    digitalWrite(motorPin3, LOW); // Stop vibration
-  }
-
-
-
-
-
-  // Print sensor readings to Serial Monitor
   Serial.print("Sensor 1: ");
   Serial.print(inches1);
   Serial.print(" inches, ");
@@ -160,12 +145,59 @@ void loop() {
   Serial.println();
 
 
+  delay(100);
+
+
+  digitalWrite(pingPin1, LOW);
+  digitalWrite(pingPin3, LOW);
+  digitalWrite(motorPin1, LOW);
+  digitalWrite(motorPin3, LOW);
+ 
+
+
+
+
+  if (cm2 < dThreshold1) {
+    analogWrite(motorPin2, 255); // Full intensity vibration
+  } else if (cm2 >= dThreshold1 && cm2 < dThreshold2) {
+    analogWrite(motorPin2, 128); // Medium intensity vibration
+  } else {
+    digitalWrite(motorPin2, LOW); // Stop vibration
+  }
+
+
   Serial.print("Sensor 2: ");
   Serial.print(inches2);
   Serial.print(" inches, ");
   Serial.print(cm2);
   Serial.print(" cm ");
   Serial.println();
+
+
+
+
+  delay(100);
+
+
+
+  digitalWrite(pingPin1, LOW);
+  digitalWrite(pingPin2, LOW);
+  digitalWrite(motorPin1, LOW);
+  digitalWrite(motorPin2, LOW);
+
+
+
+
+
+  if (cm3 < dThreshold1) {
+    analogWrite(motorPin3, 255); // Full intensity vibration
+  } else if (cm3 >= dThreshold1 && cm3 < dThreshold2) {
+    analogWrite(motorPin3, 128); // Medium intensity vibration
+  } else {
+    digitalWrite(motorPin3, LOW); // Stop vibration
+  }
+
+
 
 
   Serial.print("Sensor 3: ");
@@ -177,5 +209,13 @@ void loop() {
   Serial.println();
 
 
-  delay(5000); // Adjust delay as needed
+  delay(100);
+  // Print sensor readings to Serial Monitor
+
+
+
+
+
+
+   // Adjust delay as needed
 }
